@@ -4,7 +4,7 @@ import flet as ft
 class View(object):
     def __init__(self, page):
         self._page = page
-        self._page.title = "TdP 2024 - Indovina il Numero"
+        self._page.title = "TdP 2026 - Indovina il Numero"
         self._page.horizontal_alignment = 'CENTER'
         self._titolo = None
         self._controller = None
@@ -17,10 +17,10 @@ class View(object):
 
         self._txt_n_max = ft.TextField(label="NumeroMassimo", disabled=True, width=200, value=self._controller.get_numero_massimo())
         self._txt_T_max = ft.TextField(label="Tentativi Max", disabled=True, width=200, value=self._controller.get_numero_massimo_tentativi())
-        self._t_rimasti = ft.TextField(label="Tentativi rimanenti", disabled=True, width=200, value=self._controller.get_t_rimanenti())
+        self._t_rimasti = ft.TextField(label="Tentativi rimanenti", disabled=True, width=200) #value=self._controller.get_t_rimanenti())
         self._txt_input = ft.TextField(label="Valore", disabled=True, width=200)
-        self._btn_reset = ft.ElevatedButton(text="Nuova Partita", width=200, on_click=self._controller.reset())
-        self._btn_gioca = ft.ElevatedButton(text="Indovina", width=200, on_click=self._controller.play(), disabled=True)
+        self._btn_reset = ft.ElevatedButton(text="Nuova Partita", width=200, on_click=self._controller.reset)
+        self._btn_gioca = ft.ElevatedButton(text="Indovina", width=200, on_click=self._controller.play, disabled=True)
 
 
         self.row1 = ft.Row(controls=[self._txt_n_max, self._btn_reset], alignment=ft.MainAxisAlignment.CENTER)
@@ -35,7 +35,7 @@ class View(object):
         self._pb = ft.ProgressBar(width=600, color="amber")
         
         self._page.add(self.row1, self.row2, self.row3, self._sl, self._pb, self._lvOut)
-        self.update()
+        self._page.update()
 
     def setController(self, controller):
         self._controller = controller

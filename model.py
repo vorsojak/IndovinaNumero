@@ -20,8 +20,8 @@ class Model(object):
         if self._t_corrente == 0:
             return 2
         if tentativo > self._segreto:
-            return 1
-        return -1  # tentativo < self._segreto
+            return -1
+        return 1  # tentativo < self._segreto
 
     @property
     def get_n_max(self):

@@ -1,3 +1,5 @@
+from math import log2
+
 from view import View
 from model import Model
 import flet as ft
@@ -17,7 +19,7 @@ class Controller(object):
     def get_t_rimanenti(self):
         return self._model._t_corrente
 
-    def reset(self):
+    def reset(self, e):
         self._model.reset_gioco()
         self._view._t_rimasti.value = self._model._t_corrente
         self._view._lvOut.controls.clear()
@@ -25,7 +27,7 @@ class Controller(object):
         self._view._txt_input.disabled = False
         self._view._lvOut.controls.append(ft.Text("Indovina a quale numero sto pendando!"))
         self._view._pb.value = self._model._t_corrente / self._model._t_max
-        self._view._txt_n_max.value = self._model._t_max
+        self._view._txt_n_max.value = self._model._n_max
         self._view.update()
 
     def play(self, e):
@@ -90,6 +92,14 @@ class Controller(object):
                 f"Il segreto è più grande di {tentativoInt}"
             ))
             self._view.update()
+
+
+    def setDifficulty(self, e):
+        self._model._n_max = int(self._view._sl.value)
+        self._model._t_max = int(log2(self._model._n_max))
+        self._view._txt_n_max.value = self._model._n_max
+        self._view.update()
+        print(self._model._n_max, "Nmax")
 
 
 
