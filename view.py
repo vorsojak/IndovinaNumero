@@ -8,16 +8,15 @@ class View(object):
         self._page.horizontal_alignment = 'CENTER'
         self._titolo = None
         self._controller = None
+        self._lvOut = ft.ListView(expand=True)
 
-    def caricaInterfaccia(self):
+    def carica_interfaccia(self):
         self._titolo = ft.Text("Indovina il numero",
                                color="blue", size=24)
 
-        self._lvOut = ft.ListView(expand=True)
-
         self._txt_n_max = ft.TextField(label="NumeroMassimo", disabled=True, width=200, value=self._controller.get_numero_massimo())
         self._txt_T_max = ft.TextField(label="Tentativi Max", disabled=True, width=200, value=self._controller.get_numero_massimo_tentativi())
-        self._t_rimasti = ft.TextField(label="Tentativi rimanenti", disabled=True, width=200) #value=self._controller.get_t_rimanenti())
+        self._t_rimasti = ft.TextField(label="Tentativi rimanenti", disabled=True, width=200)
         self._txt_input = ft.TextField(label="Valore", disabled=True, width=200)
         self._btn_reset = ft.ElevatedButton(text="Nuova Partita", width=200, on_click=self._controller.reset)
         self._btn_gioca = ft.ElevatedButton(text="Indovina", width=200, on_click=self._controller.play, disabled=True)
@@ -29,8 +28,7 @@ class View(object):
 
         self._sl = ft.Slider(label="Difficoltà",
                              min=50, max=500,
-                             value=100, width=600, divisions=10)
-        self._sl.on_change = self._controller.setDifficulty
+                             value=100, width=600, divisions=10, on_change=self._controller.setDifficulty, disabled=False)
 
         self._pb = ft.ProgressBar(width=600, color="amber")
         
@@ -42,6 +40,45 @@ class View(object):
 
     def update(self):
         self._page.update()
+
+
+    @property
+    def lvOut(self):
+        return self._lvOut
+
+    @property
+    def txt_n_max(self):
+        return self._txt_n_max
+
+    @property
+    def txt_T_max(self):
+        return self._txt_T_max
+
+    @property
+    def t_rimasti(self):
+        return self._t_rimasti
+
+    @property
+    def txt_input(self):
+        return self._txt_input
+
+    @property
+    def btn_gioca(self):
+        return self._btn_gioca
+
+    @property
+    def sl(self):
+        return self._sl
+
+    @property
+    def pb(self):
+        return self._pb
+
+
+
+
+
+
 
 
 if __name__ == "__main__":

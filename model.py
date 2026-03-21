@@ -35,6 +35,10 @@ class Model(object):
     def get_t_rimanenti(self):
         return self._t_corrente
 
+    @property
+    def get_segreto(self):
+        return self._segreto
+
 
 if __name__ == "__main__":
     m = Model()
